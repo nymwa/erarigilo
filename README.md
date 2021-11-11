@@ -1,0 +1,4 @@
+# ERARIGILO
+
+error generation tool
+
