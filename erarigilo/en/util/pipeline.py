@@ -3,7 +3,7 @@ from .token import EnToken
 from .sent import EnSent
 from erarigilo.en.form import form_trg
 
-class EnPileline(Pipeline):
+class EnPipeline(Pipeline):
 
     def is_sampled(self, dct):
 
@@ -13,7 +13,7 @@ class EnPileline(Pipeline):
         if self.lang_list is None:
             return False
 
-        if all(dct[lang] is None for lang is self.lang_list):
+        if all(dct[lang] is None for lang in self.lang_list):
             return False
 
         p = self.uniform_sampler()

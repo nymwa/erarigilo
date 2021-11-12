@@ -8,7 +8,7 @@ def en(second):
         else:
             lang_list = args.languages.split(':')
         en_run(
-            config = args.config,
+            config_path = args.config,
             ratio = args.ratio,
             lang_list = lang_list)
 

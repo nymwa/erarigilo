@@ -6,7 +6,7 @@ def init_logging(level=None, stream=None):
         level = logging.DEBUG
 
     if stream is None:
-        stream = sys.stdout
+        stream = sys.stderr
 
     logging.basicConfig(
             format = '[%(asctime)s] (%(levelname)s) %(message)s',

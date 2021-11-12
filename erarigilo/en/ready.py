@@ -3,7 +3,7 @@ import json
 import spacy
 from .util.token import EnToken
 from .util.sent import EnSent
-from arteraro.reguligilo.encoder import Encoder
+from reguligilo.encoder import Encoder
 
 def space_normalization(x):
     return ' '.join(x.split())
@@ -25,7 +25,7 @@ def convert_token(tok):
 
 class SpacyWrapper:
     def __init__(self, remove_tagger_and_ner=False):
-        self.nlp = spacy.load('en')
+        self.nlp = spacy.load('en_core_web_sm')
         if remove_tagger_and_ner:
             self.nlp.pipeline = self.nlp.pipeline[1:2]
 
@@ -44,7 +44,7 @@ class ReguligiloWrapper:
         text = self.encoder.regularize(tok.text)
         return EnToken(
                 index = tok.i,
-                cor = text,
+                trg = text,
                 tag = tok.tag_,
                 pos = tok.pos_,
                 dep = tok.dep_,
@@ -60,13 +60,16 @@ class ReguligiloWrapper:
         return sent
 
 
-def en_ready(quote=True):
+def en_ready(quote = True, json_input = False):
     nlp = SpacyWrapper()
     encoder = ReguligiloWrapper(quote)
 
     for x in sys.stdin:
         x = x.strip()
-        x = json.loads(x)
+        if json_input:
+            x = json.loads(x)
+        else:
+            x = {'trg': x}
 
         trg = encoder.doc_to_sent(nlp.line_to_doc(x['trg'])).encode()
         dct = {'trg': trg}

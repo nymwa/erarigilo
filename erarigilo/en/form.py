@@ -34,10 +34,10 @@ def make_word_list(token_list):
 
 def remove_deleted_tokens(word_list):
     word_list = [
-            (index, word, left_space, right_space)
-            for index, word, left_space, right_space
+            word
+            for word
             in word_list
-            if word != '']
+            if word.word != '']
     return word_list
 
 
@@ -62,7 +62,7 @@ def form_src(sent):
         token_list.append(token)
         token_list += token.addition
     word_list = make_word_list(token_list)
-    word_list = removed_deleted_tokens(word_list)
+    word_list = remove_deleted_tokens(word_list)
     text = word_list_to_text(word_list)
     return text
 

@@ -1,11 +1,14 @@
 import sys
 import yaml
+from .util.pipeline import EnPipeline
 from erarigilo.module.factory import registory
-from . import modules
+from . import *
 
 def load_config(config_path):
     with open(config_path) as f:
         config = yaml.safe_load(f)
+    if config is None:
+        config = []
     return config
 
 
@@ -28,7 +31,7 @@ def en_run(
     config = load_config(config_path)
     factory_list = make_factory_list(config)
 
-    pipeline = EnPileline(
+    pipeline = EnPipeline(
             factory_list,
             ratio,
             lang_list)

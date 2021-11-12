@@ -2,12 +2,9 @@ from erarigilo.util.sampler import ChoiceSampler
 
 class Rule:
 
-    def __init__(self, name):
-        self.name = name
-
     def add_history(self, token):
         token.history.append(self.name)
-        for additional_token is token.addition:
+        for additional_token in token.addition:
             additional_token.history.append(self.name)
         return token
 
@@ -71,28 +68,37 @@ class WordConditionableRule:
 
 class ChoiceSampleableRule(SamplableRule):
 
-    def __init__(self, name, choice_list, p = None, buffer_size = None):
-        super().__init__(name)
+    def __init__(self, choice_list,
+            p = None, buffer_size = None):
+
+        super().__init__()
         self.sampler = ChoiceSampler(choice_list, p = p, buffer_size = buffer_size)
 
 
 class WordConditionedChoiceSamplableRule(WordConditionableRule, ChoiceSampleableRule):
 
-    def __init__(self, name, choice_list, word_cond, p = None, buffer_size = None):
-        super().__init__(name, choice_list, p = p, buffer_size = buffer_size)
+    def __init__(self, choice_list, word_cond,
+            p = None, buffer_size = None):
+
+        super().__init__(choice_list, p = p,
+                buffer_size = buffer_size)
+
         self.word_cond = word_cond
 
 
 class ReplacableRule:
 
-    def __init__(self, name, target):
-        super().__init__(name)
+    def __init__(self, target):
+        super().__init__()
         self.target = target
+
+    def make_error(self, token):
+        return self.target
 
 
 class WordConditionedReplacableRule(ReplacableRule):
 
-    def __init__(self, name, target, word_cond):
-        super().__init__(name, target)
+    def __init__(self, target, word_cond):
+        super().__init__(target)
         self.word_cond = word_cond
 

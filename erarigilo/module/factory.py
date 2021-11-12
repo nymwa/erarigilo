@@ -6,14 +6,10 @@ from .module import (
 
 registory = {}
 
-def register(name):
-
-    def _register(factory_function):
-        assert name not in registory
-        registory[name] = factory_function
-        return factory_function
-
-    return _register
+def register(factory):
+    name = factory.name
+    assert name not in registory
+    registory[name] = factory
 
 
 def replace_environment_variable(path):
@@ -26,17 +22,24 @@ def replace_environment_variable(path):
 
 class Factory:
 
+    def __call__(self, dct):
+        raise NotImplementedError
+
+
+class RuleInitFactory(Factory):
+
     def __init__(self, rule_class):
         self.rule_class = rule_class
+        self.name = rule_class.name
 
 
-class MeanStdFactory(Factory):
+class MeanStdFactory(RuleInitFactory):
 
     def __call__(self, dct):
         mean = dct['mean']
         std = dct['std']
         rule = self.rule_class()
-        module = make_module(mean, std, rule)
+        module = self.make_module(mean, std, rule)
         return module
 
 
@@ -60,28 +63,33 @@ class SpanWiseModuleFactory(MeanStdFactory):
 
 class ChoiceSamplingModuleFactory(Factory):
 
-    def make_module(self, name, word_cond, choice_list, p, buffer_size):
+    def make_module(self, word_cond,
+            choice_list, p, buffer_size):
+
         rule = self.rule_class(
-                name,
                 choice_list,
                 word_cond = word_cond,
                 p = p,
                 buffer_size = buffer_size)
         return TokenWiseBetaModule(mean, std, rule)
 
-    def __call__(self, dct, name, word_cond, choice_list, p = None):
+    def __call__(self, dct, word_cond,
+            choice_list, p = None):
+
         mean = dct['mean']
         std = dct['std']
         buffer_size = dct.get('buffer_size', None)
-        return self.make_module(name, word_cond, choice_list, p, buffer_size)
+        return self.make_module(word_cond,
+                choice_list, p, buffer_size)
 
 
 class ChoiceSamplingSetCondModuleFactory(Factory):
 
-    def __call__(self, dct, name, source_set, target):
+    def __call__(self, dct, source_set, target):
         mean = dct['mean']
         std = dct['std']
-        word_cond = lambda token : token.word().lower() in source_set
-        rule = self.rule_class(name, target, word_cond)
+        word_cond = (lambda token :
+                token.word().lower() in source_set)
+        rule = self.rule_class(target, word_cond)
         return TokenWiseBetaModule(mean, std, rule)
 

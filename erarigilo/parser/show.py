@@ -11,7 +11,7 @@ def en(second):
             pos = args.pos,
             dep = args.dep)
 
-    parser = sub_parsers.add_parser('en')
+    parser = second.add_parser('en')
     parser.add_argument('--hide-history', action = 'store_true')
     parser.add_argument('--color', action = 'store_true')
     parser.add_argument('--cor', default = None)

@@ -13,7 +13,7 @@ class Module:
 
     def __call__(self, sent):
         sent = self.noise(sent)
-        sent.history.append({'name' : self.mistaker.name})
+        sent.history.append({'name' : self.rule.name})
         return sent
 
 
@@ -33,7 +33,7 @@ class BetaModule(Module):
         lottery = lambda : self.uniform_sampler() < threshold
         sent = self.apply(sent, lottery)
         sent.history.append({
-            'name' : self.mistaker.name,
+            'name' : self.rule.name,
             'threshold' : round(threshold, 2)})
         return sent
 

@@ -1,4 +1,4 @@
-from erarigilo.util.token import Sent
+from erarigilo.util.sent import Sent
 
 class EnSent(Sent):
     pass
