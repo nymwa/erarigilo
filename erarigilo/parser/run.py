@@ -9,11 +9,13 @@ def en(second):
             lang_list = args.languages.split(':')
         en_run(
             config_path = args.config,
+            no_error = args.no_error,
             ratio = args.ratio,
             lang_list = lang_list)
 
     parser = second.add_parser('en')
     parser.add_argument('-c', '--config', default = 'config.yaml')
+    parser.add_argument('-n', '--no-error', action = 'store_true')
     parser.add_argument('-r', '--ratio', type=float, default=0.0)
     parser.add_argument('-l', '--languages', default=None)
     parser.set_defaults(handler = command)

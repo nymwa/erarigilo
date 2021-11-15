@@ -60,30 +60,13 @@ class SamplableRule:
         return self.sampler()
 
 
-class WordConditionableRule:
-
-    def word_cond(self, token):
-        raise NotImplementedError
-
-
-class ChoiceSampleableRule(SamplableRule):
+class ChoiceSamplableRule(SamplableRule):
 
     def __init__(self, choice_list,
             p = None, buffer_size = None):
 
         super().__init__()
         self.sampler = ChoiceSampler(choice_list, p = p, buffer_size = buffer_size)
-
-
-class WordConditionedChoiceSamplableRule(WordConditionableRule, ChoiceSampleableRule):
-
-    def __init__(self, choice_list, word_cond,
-            p = None, buffer_size = None):
-
-        super().__init__(choice_list, p = p,
-                buffer_size = buffer_size)
-
-        self.word_cond = word_cond
 
 
 class ReplacableRule:
@@ -94,11 +77,4 @@ class ReplacableRule:
 
     def make_error(self, token):
         return self.target
-
-
-class WordConditionedReplacableRule(ReplacableRule):
-
-    def __init__(self, target, word_cond):
-        super().__init__(target)
-        self.word_cond = word_cond
 

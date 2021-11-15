@@ -3,6 +3,7 @@ from erarigilo.module.factory import (
         TokenWiseModuleFactory)
 from .delete import Delete
 from .mask import MaskFactory
+
 register(TokenWiseModuleFactory(Delete))
 register(MaskFactory())
 

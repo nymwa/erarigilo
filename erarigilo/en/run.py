@@ -22,13 +22,18 @@ def make_factory_list(config):
 
 def en_run(
         config_path,
+        no_error = False,
         ratio = 0.0,
         lang_list = None):
 
     if lang_list is None:
         lang_list = []
 
-    config = load_config(config_path)
+    if no_error:
+        config = []
+    else:
+        config = load_config(config_path)
+
     factory_list = make_factory_list(config)
 
     pipeline = EnPipeline(
