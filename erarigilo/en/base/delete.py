@@ -1,12 +1,16 @@
 from pathlib import Path
-from erarigilo.module.rule import ReplacableRule, TokenWiseRule
+from erarigilo.module.rule import (
+        DeletingRule,
+        TokenWiseRule)
 
-class Delete(ReplacableRule, TokenWiseRule):
+class Delete(
+        DeletingRule,
+        TokenWiseRule):
 
     name = 'del'
 
     def __init__(self):
-        super().__init__(target = '')
+        super().__init__()
 
         with open(Path(__file__).parent.resolve()
                 / 'delete_list.txt') as f:

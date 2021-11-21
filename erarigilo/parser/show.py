@@ -4,6 +4,7 @@ def en(second):
 
     def command(args):
         en_show(
+            capitalize = args.capitalize,
             hide_history = args.hide_history,
             color = args.color,
             cor = args.cor,
@@ -13,6 +14,7 @@ def en(second):
             remove_identical = args.remove_identical)
 
     parser = second.add_parser('en')
+    parser.add_argument('-c', '--capitalize', action = 'store_true')
     parser.add_argument('--hide-history', action = 'store_true')
     parser.add_argument('--color', action = 'store_true')
     parser.add_argument('--cor', default = None)

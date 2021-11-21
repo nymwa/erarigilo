@@ -1,24 +1,19 @@
 import sys
-import json
 from erarigilo.en.util.token import EnToken
 from erarigilo.en.util.sent import EnSent
-from erarigilo.en.util.form import form_src, form_trg
+from erarigilo.en.util.form import (
+        decode,
+        form_src,
+        form_trg)
 from .conds import Conds
 from .table import Table
 
-def decode(sent):
-    sent = sent.strip()
-    sent = json.loads(sent)
-    sent = EnSent.decode(sent, token_class = EnToken)
-    return sent
-
-
-def show_sents(sent):
+def show_sents(sent, capitalize = False):
     if sent.trg is None:
-        print('src: ' + form_src(sent))
+        print('src: ' + form_src(sent, capitalize = capitalize))
         print('trg: ' + form_trg(sent))
     else:
-        print('src    : ' + form_src(sent))
+        print('src    : ' + form_src(sent, capitalize = capitalize))
         print('rtt({}): '.format(sent.trg['bridge']) + form_trg(sent))
         print('trg    : ' + sent.trg['text'])
 
@@ -49,6 +44,7 @@ def show_history(sent):
 
 
 def en_show(
+        capitalize = False,
         hide_history = False,
         color = False,
         cor = None,
@@ -62,7 +58,7 @@ def en_show(
     for sent in sys.stdin:
         sent = decode(sent)
         if cond.check(sent):
-            show_sents(sent)
+            show_sents(sent, capitalize = capitalize)
             if not hide_history:
                 show_history(sent)
             tab = Table(cond, sent)

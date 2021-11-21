@@ -1,14 +1,15 @@
 import sys
-import json
-from .util.form import form_src, form_trg
+from erarigilo.en.util.sent import EnSent
+from .util.form import (
+        decode,
+        form_src,
+        form_trg)
 
-def en_form():
+def en_form(capitalize = False):
     for sent in sys.stdin:
-        sent = sent.strip()
-        sent = json.loads(sent)
-        sent = EnSent.decode(sent, token_class = EnToken)
+        sent = decode(sent)
 
-        src = form_src(sent)
+        src = form_src(sent, capitalize = capitalize)
 
         if sent.trg is None:
             trg = form_trg(sent)

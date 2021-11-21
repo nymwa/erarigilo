@@ -3,9 +3,10 @@ from erarigilo.en.form import en_form
 def en(second):
 
     def command(args):
-        en_form()
+        en_form(capitalize = args.capitalize)
 
     parser = second.add_parser('en')
+    parser.add_argument('-c', '--capitalize', action = 'store_true')
     parser.set_defaults(handler = command)
 
 

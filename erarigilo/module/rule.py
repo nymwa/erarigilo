@@ -33,7 +33,11 @@ class TokenWiseRuleCaseFitted:
 
     def preprocess(self, token, error):
         if token.word().istitle():
-            error = error.title()
+            # N.G.: error.title()
+            #       'the other' -> 'The Other'
+            # O.K.: error.capitalize()
+            #       'the other' -> 'The other'
+            error = error.capitalize()
         return error
 
 
@@ -69,12 +73,18 @@ class ChoiceSamplableRule(SamplableRule):
         self.sampler = ChoiceSampler(choice_list, p = p, buffer_size = buffer_size)
 
 
-class ReplacableRule:
-
-    def __init__(self, target):
-        super().__init__()
-        self.target = target
+class DeletingRule:
 
     def make_error(self, token):
-        return self.target
+        return ''
+
+
+class ReplacableRule:
+
+    def __init__(self, error):
+        super().__init__()
+        self.error_word = error
+
+    def make_error(self, token):
+        return self.error_word
 

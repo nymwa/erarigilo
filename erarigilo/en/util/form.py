@@ -1,5 +1,13 @@
+import json
 from .token import EnToken
 from .sent import EnSent
+
+def decode(sent):
+    sent = sent.strip()
+    sent = json.loads(sent)
+    sent = EnSent.decode(sent, token_class = EnToken)
+    return sent
+
 
 class Word:
 
@@ -39,9 +47,11 @@ def remove_deleted_tokens(word_list):
     return word_list
 
 
-def word_list_to_text(word_list):
+def word_list_to_text(word_list, capitalize = False):
     if len(word_list) > 0:
         text = word_list[0].word
+        if capitalize and text.islower():
+            text = text.capitalize()
     else:
         text = ''
 
@@ -54,14 +64,14 @@ def word_list_to_text(word_list):
     return text
 
 
-def form_src(sent):
+def form_src(sent, capitalize = False):
     token_list = []
     for token in sent:
         token_list.append(token)
         token_list += token.addition
     word_list = make_word_list(token_list)
     word_list = remove_deleted_tokens(word_list)
-    text = word_list_to_text(word_list)
+    text = word_list_to_text(word_list, capitalize = capitalize)
     return text
 
 

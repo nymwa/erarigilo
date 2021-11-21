@@ -8,7 +8,7 @@ registory = {}
 
 def register(factory):
     name = factory.name
-    assert name not in registory
+    assert name not in registory, name
     registory[name] = factory
 
 
