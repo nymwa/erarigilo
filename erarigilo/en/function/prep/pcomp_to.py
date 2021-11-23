@@ -1,12 +1,12 @@
 from .rule import PcompCond
-from erarigilo.en.util.rule import WordEqCondRule
+from erarigilo.en.util.rule import TrgEqCondRule
 from erarigilo.module.rule import (
         DeletingRule,
         TokenWiseRuleCaseFitted,
         TokenWiseRule)
 
 class PcompToRule(
-        WordEqCondRule,
+        TrgEqCondRule,
         PcompCond,
         DeletingRule,
         TokenWiseRuleCaseFitted,

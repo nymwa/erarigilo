@@ -1,12 +1,12 @@
 from .rule import AdvmodCond
-from erarigilo.en.util.rule import WordInCondRule
+from erarigilo.en.util.rule import TrgInCondRule
 from erarigilo.module.rule import (
         DeletingRule,
         TokenWiseRuleCaseFitted,
         TokenWiseRule)
 
 class AdvmodRule(
-        WordInCondRule,
+        TrgInCondRule,
         AdvmodCond,
         DeletingRule,
         TokenWiseRuleCaseFitted,

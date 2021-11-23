@@ -16,5 +16,5 @@ class ToRule(
                 p = [0.6, 0.2, 0.2])
 
     def cond(self, token):
-        return (token.tag == 'TO') and (token.word().lower() == 'to')
+        return (token.tag == 'TO') and (token.lower == 'to')
 

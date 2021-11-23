@@ -1,9 +1,11 @@
 from erarigilo.module.rule import (
         ChoiceSamplableRule,
+        TokenWiseRuleCaseFitted,
         TokenWiseRule)
 
 class PartRule(
         ChoiceSamplableRule,
+        TokenWiseRuleCaseFitted,
         TokenWiseRule):
 
     name = 'part'

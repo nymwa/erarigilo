@@ -1,12 +1,12 @@
 from .rule import PrepCond
-from erarigilo.en.util.rule import WordEqCondRule
+from erarigilo.en.util.rule import TrgEqCondRule
 from erarigilo.module.rule import (
         DeletingRule,
         TokenWiseRuleCaseFitted,
         TokenWiseRule)
 
 class PrepOutRule(
-        WordEqCondRule,
+        TrgEqCondRule,
         PrepCond,
         DeletingRule,
         TokenWiseRuleCaseFitted,

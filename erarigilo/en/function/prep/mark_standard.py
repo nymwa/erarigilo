@@ -1,12 +1,12 @@
 from .rule import MarkCond
-from erarigilo.en.util.rule import WordInCondRule
+from erarigilo.en.util.rule import TrgInCondRule
 from erarigilo.module.rule import (
         DeletingRule,
         TokenWiseRuleCaseFitted,
         TokenWiseRule)
 
 class StandardMarkRule(
-        WordInCondRule,
+        TrgInCondRule,
         MarkCond,
         DeletingRule,
         TokenWiseRuleCaseFitted,
