@@ -1,12 +1,12 @@
 from .rule import DetCond
-from erarigilo.en.util.rule import WordEqCondRule
+from erarigilo.en.util.rule import TrgEqCondRule
 from erarigilo.module.rule import (
         ChoiceSamplableRule,
         TokenWiseRuleCaseFitted,
         TokenWiseRule)
 
 class AnotherRule(
-        WordEqCondRule,
+        TrgEqCondRule,
         DetCond,
         ChoiceSamplableRule,
         TokenWiseRuleCaseFitted,

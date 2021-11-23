@@ -1,13 +1,13 @@
 from erarigilo.en.util.rule import (
         PlainWordCond,
-        WordEqCondRule)
+        TrgEqCondRule)
 from erarigilo.module.rule import (
         ChoiceSamplableRule,
         TokenWiseRuleCaseFitted,
         TokenWiseRule)
 
 class OtherRule(
-        WordEqCondRule,
+        TrgEqCondRule,
         PlainWordCond,
         ChoiceSamplableRule,
         TokenWiseRuleCaseFitted,

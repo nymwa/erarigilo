@@ -1,9 +1,14 @@
+from erarigilo.en.util.rule import (
+        PlainWordCond,
+        TrgEqCondRule)
 from erarigilo.module.rule import (
         ChoiceSamplableRule,
         TokenWiseRuleCaseFitted,
         TokenWiseRule)
 
 class WhoeverRule(
+        TrgEqCondRule,
+        PlainWordCond,
         ChoiceSamplableRule,
         TokenWiseRuleCaseFitted,
         TokenWiseRule):
@@ -12,7 +17,5 @@ class WhoeverRule(
 
     def __init__(self):
         super().__init__(['whatever', 'whichever', 'however', 'who'])
-
-    def cond(self, token):
-        return token.lower == 'whoever'
+        self.target_word = 'whoever'
 

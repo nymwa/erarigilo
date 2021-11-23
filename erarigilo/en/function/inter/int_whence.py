@@ -1,9 +1,14 @@
+from erarigilo.en.util.rule import (
+        PlainWordCond,
+        TrgEqCondRule)
 from erarigilo.module.rule import (
         ChoiceSamplableRule,
         TokenWiseRuleCaseFitted,
         TokenWiseRule)
 
 class WhenceRule(
+        TrgEqCondRule,
+        PlainWordCond,
         ChoiceSamplableRule,
         TokenWiseRuleCaseFitted,
         TokenWiseRule):
@@ -12,7 +17,5 @@ class WhenceRule(
 
     def __init__(self):
         super().__init__(['when', 'whither', 'where', 'what'])
-
-    def cond(self, token):
-        return token.lower == 'whence'
+        self.target_word = 'whence'
 

@@ -1,12 +1,12 @@
 from .rule import DetPlusCond
-from erarigilo.en.util.rule import WordInCondRule
+from erarigilo.en.util.rule import TrgInCondRule
 from erarigilo.module.rule import (
         ChoiceSamplableRule,
         TokenWiseRuleCaseFitted,
         TokenWiseRule)
 
 class DemonstrativeExtraRule(
-        WordInCondRule,
+        TrgInCondRule,
         DetPlusCond,
         ChoiceSamplableRule,
         TokenWiseRuleCaseFitted,

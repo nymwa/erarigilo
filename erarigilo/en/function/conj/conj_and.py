@@ -1,12 +1,12 @@
 from erarigilo.en.util.rule import (
-        WordEqCondRule,
+        TrgEqCondRule,
         PlainWordCond)
 from erarigilo.module.rule import (
         ChoiceSamplableRule,
         TokenWiseRule)
 
 class AndRule(
-        WordEqCondRule,
+        TrgEqCondRule,
         PlainWordCond,
         ChoiceSamplableRule,
         TokenWiseRule):
