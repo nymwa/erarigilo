@@ -1,4 +1,6 @@
-from erarigilo.en.function.pron.rule import PronCond
+from erarigilo.en.function.pron.rule import (
+        PronCond,
+        DepEqCond)
 from erarigilo.en.util.rule import TrgEqCondRule
 from erarigilo.module.rule import (
         ChoiceSamplableRule,
@@ -7,24 +9,25 @@ from erarigilo.module.rule import (
 
 class PossDetRule(
         TrgEqCondRule,
+        DepEqCond,
         PronCond,
         ChoiceSamplableRule,
         TokenWiseRuleCaseFitted,
         TokenWiseRule):
 
-    name = '1plu_poss_det'
+    name = '3sng_fem_poss_det'
 
     def __init__(self):
         super().__init__([
             '',
-            'we',
-            'us',
-            'ours',
+            'she',
+            'hers',
+            'their',
+            'his',
             'a',
-            'the',
             'an',
-            'theirs',
-            'its',
-            'my'])
-        self.target_word = 'our'
+            'the',
+            'its'])
+        self.target_word = 'her'
+        self.target_dep_label = 'poss'
 

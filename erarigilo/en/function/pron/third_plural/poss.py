@@ -5,26 +5,23 @@ from erarigilo.module.rule import (
         TokenWiseRuleCaseFitted,
         TokenWiseRule)
 
-class PossDetRule(
+class PossRule(
         TrgEqCondRule,
         PronCond,
         ChoiceSamplableRule,
         TokenWiseRuleCaseFitted,
         TokenWiseRule):
 
-    name = '1plu_poss_det'
+    name = '3plu_poss'
 
     def __init__(self):
         super().__init__([
             '',
-            'we',
-            'us',
-            'ours',
-            'a',
-            'the',
-            'an',
-            'theirs',
+            'they',
+            'them',
+            'their',
             'its',
-            'my'])
-        self.target_word = 'our'
+            'his',
+            'hers'])
+        self.target_word = 'theirs'
 

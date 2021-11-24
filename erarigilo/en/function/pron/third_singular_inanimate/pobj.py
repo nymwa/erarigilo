@@ -1,30 +1,31 @@
-from erarigilo.en.function.pron.rule import PronCond
+from erarigilo.en.function.pron.rule import (
+        PronCond,
+        DepEqCond)
 from erarigilo.en.util.rule import TrgEqCondRule
 from erarigilo.module.rule import (
         ChoiceSamplableRule,
         TokenWiseRuleCaseFitted,
         TokenWiseRule)
 
-class PossDetRule(
+class PobjRule(
         TrgEqCondRule,
+        DepEqCond,
         PronCond,
         ChoiceSamplableRule,
         TokenWiseRuleCaseFitted,
         TokenWiseRule):
 
-    name = '1plu_poss_det'
+    name = '3sng_inan_pobj'
 
     def __init__(self):
         super().__init__([
-            '',
-            'we',
-            'us',
-            'ours',
-            'a',
-            'the',
-            'an',
-            'theirs',
             'its',
-            'my'])
-        self.target_word = 'our'
+            'them',
+            'him',
+            'her',
+            'this',
+            'that',
+            'which'])
+        self.target_word = 'it'
+        self.target_dep_label = 'pobj'
 

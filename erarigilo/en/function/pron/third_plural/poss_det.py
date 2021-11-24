@@ -12,19 +12,19 @@ class PossDetRule(
         TokenWiseRuleCaseFitted,
         TokenWiseRule):
 
-    name = '1plu_poss_det'
+    name = '3plu_poss_det'
 
     def __init__(self):
         super().__init__([
             '',
-            'we',
-            'us',
-            'ours',
-            'a',
-            'the',
-            'an',
+            'they',
+            'them',
             'theirs',
+            'a',
+            'an',
+            'the',
             'its',
-            'my'])
-        self.target_word = 'our'
+            'his',
+            'her'])
+        self.target_word = 'their'
 
