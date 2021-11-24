@@ -56,12 +56,12 @@ class Row:
             self.p,
             self.left_space,
             self.right_space,
-            self.tag,
-            self.pos,
-            self.dep,
+            '_' + self.tag,
+            '_' + self.pos,
+            '_' + self.dep,
             self.lem,
             self.nrm,
-            self.ent_type,
-            self.ent_iob,
+            '_' + self.ent_type,
+            '_' + self.ent_iob,
             self.history)
 

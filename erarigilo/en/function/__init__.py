@@ -6,6 +6,7 @@ from .conj import *
 from .det import *
 from .inter import *
 from .prep import *
+from .pron import *
 
 from .auxpass import AuxpassRule
 from .contr import ContrFactory

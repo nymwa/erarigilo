@@ -20,8 +20,37 @@ def make_factory_list(config):
     return factory_list
 
 
+def run_by_batch(pipeline, batch_size):
+    batch = []
+    for x in sys.stdin:
+        x = x.strip()
+        batch.append(x)
+        if len(batch) >= batch_size:
+            batch = pipeline(batch)
+            for sent in batch:
+                print(sent)
+            batch = []
+
+    if len(batch) > 0:
+        batch = pipeline(batch)
+        for sent in batch:
+            print(sent)
+        batch = []
+
+    assert len(batch) == 0
+
+
+def run_all_at_once(pipeline):
+    batch = sys.stdin.readlines()
+    batch = pipeline(batch)
+    for sent in batch:
+        print(sent)
+
+
 def en_run(
         config_path,
+        is_run_by_batch = False,
+        batch_size = 1000,
         no_error = False,
         ratio = 0.0,
         lang_list = None):
@@ -41,8 +70,8 @@ def en_run(
             ratio,
             lang_list)
 
-    batch = sys.stdin.readlines()
-    batch = pipeline(batch)
-    for sent in batch:
-        print(sent)
+    if is_run_by_batch:
+        run_by_batch(pipeline, batch_size)
+    else:
+        run_all_at_once(pipeline)
 

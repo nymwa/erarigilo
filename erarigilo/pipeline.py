@@ -38,9 +38,10 @@ class Pipeline:
             yield sent
 
     def __call__(self, batch):
+        batch_size = len(batch)
         batch = self.batch_decode(batch)
 
-        logger.info('Start Error Generation')
+        logger.info('Batch loaded, length = {}'.format(batch_size))
 
         for index, (factory, dct) in enumerate(self.factory_list, start = 1):
             module = factory(dct)
