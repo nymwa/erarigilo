@@ -10,6 +10,7 @@ setuptools.setup(
             'numpy',
             'tabulate',
             'spacy>=3.2.0',
-            'lemminflect'],
+            'lemminflect',
+            'nltk'],
         entry_points = {'console_scripts': ['erg = erarigilo.main:main',]})
 

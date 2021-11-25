@@ -12,18 +12,17 @@ def register(factory):
     registory[name] = factory
 
 
-def replace_environment_variable(path):
-    if 'SGE_LOCALDIR' in os.environ:
-        path = path.replace(
-            '${SGE_LOCALDIR}',
-            os.environ['SGE_LOCALDIR'])
-    return path
-
-
 class Factory:
 
     def __call__(self, dct):
         raise NotImplementedError
+
+    def replace_environment_variable(self, path):
+        if 'SGE_LOCALDIR' in os.environ:
+            path = path.replace(
+                '${SGE_LOCALDIR}',
+                os.environ['SGE_LOCALDIR'])
+        return path
 
 
 class RuleInitFactory(Factory):
