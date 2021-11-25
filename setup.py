@@ -9,6 +9,7 @@ setuptools.setup(
             'pyyaml',
             'numpy',
             'tabulate',
-            'spacy>=3.2.0'],
+            'spacy>=3.2.0',
+            'lemminflect'],
         entry_points = {'console_scripts': ['erg = erarigilo.main:main',]})
 
