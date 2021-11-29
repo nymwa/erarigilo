@@ -51,7 +51,7 @@ cat config.yaml
 
 echo 'I have a pen.' | erg ready en | erg run en | erg show en
 
-rc: I a pen
+src: I a pen
 trg: I have a pen .
 history (1): del(0.31)
 +-----+---------+-------+-------+--------+-----------+-----------+-------+-------+-------+---------+--------+------------+-----------+-----------+
