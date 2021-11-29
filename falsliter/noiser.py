@@ -3,6 +3,7 @@ import numpy as np
 import torch
 
 class FalsLiterNoiser:
+
     def __init__(self, n, score_path, temp=1.0):
         self.vocab = Vocabulary()
         self.n = n
