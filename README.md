@@ -2,8 +2,9 @@
 
 error generation tool
 
-## usage
+## usage (en)
 
+note: please use SpaCy v3. SpaCy v2 is not supported.
 
 - `erg ready en`
 	- SpaCy Tokenization & Tagging
