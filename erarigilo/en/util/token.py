@@ -64,8 +64,21 @@ class EnToken(Token):
         shift = dct['shift']
         left_space = dct['left_space']
         right_space = dct['right_space']
-        src = dct['src']
-        trg = dct['trg']
+
+        if 'src' in dct:
+            src = dct['src']
+        elif 'org' in dct:
+            src = dct['org'] # for compatibility of arteraro
+        else:
+            assert False
+
+        if 'trg' in dct:
+            trg = dct['trg']
+        elif 'cor' in dct:
+            trg = dct['cor'] # for compatibility of arteraro
+        else:
+            assert False
+
         tag = dct['tag']
         pos = dct['pos']
         dep = dct['dep']
